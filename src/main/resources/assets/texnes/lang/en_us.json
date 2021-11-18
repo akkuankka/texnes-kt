@@ -1,0 +1,12 @@
+{
+  "item.texnes.bismuth": "Bismuth Crystals",
+  "itemGroup.texnes.texnes-tab": "TeXnes",
+  "block.texnes.bismuth_block": "Block of Bismuth",
+  "block.texnes.natron_block": "Raw Natron",
+  "block.texnes.borax_block": "Raw Borax",
+  "block.texnes.nitre_block": "Raw Nitre",
+  "block.texnes.salt_block": "Block of Salt",
+  "block.texnes.gypsum_block": "Raw Gypsum",
+  "biome.texnes.salt_flats": "Salt Flats",
+  "biome.texnes.playa": "Playa"
+}
