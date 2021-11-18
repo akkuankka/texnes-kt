@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "es.headbe.texnes.Texnes::init"
+    ],
+    "client": [
+      "es.headbe.texnes.TexnesClient::init"
     ]
   },
   "mixins": [
