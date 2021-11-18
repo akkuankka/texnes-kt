@@ -1,5 +1,6 @@
 package es.headbe.texnes
 
+import es.headbe.texnes.registry.generation.Generation
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
@@ -17,6 +18,7 @@ class Texnes {
         // Proceed with mild caution.
         ModBlocks.registerAll()
         ModItems.registerAll()
+        Generation.registerAll()
 
 //        println("Hello Fabric world!")
     }
