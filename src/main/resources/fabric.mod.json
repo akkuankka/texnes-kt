@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
-  "version": "${version}",
+  "id": "texnes",
+  "version": "0.1.0",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Texnes",
+  "description": "A tech mod",
   "authors": [
-    "Me!"
+    "Cody McKenzie"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "",
+    "sources": "https://github.com/akkuankka/texnes-kt"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/texnes/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleModKt::init"
+      "es.headbe.texnes.Texnes::init"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "texnes.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.8.7",
