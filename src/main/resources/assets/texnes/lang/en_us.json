@@ -1,6 +1,7 @@
 {
   "item.texnes.bismuth": "Bismuth Crystals",
-  "itemGroup.texnes.texnes-tab": "TeXnes",
+  "item.texnes.pressure_gauge": "Pressure Gauge",
+  "itemGroup.texnes.texnes-tab": "Texnes",
   "block.texnes.bismuth_block": "Block of Bismuth",
   "block.texnes.natron_block": "Raw Natron",
   "block.texnes.borax_block": "Raw Borax",
