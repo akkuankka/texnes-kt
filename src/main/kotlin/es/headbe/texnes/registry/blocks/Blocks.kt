@@ -1,5 +1,6 @@
 package es.headbe.texnes.registry.blocks
 
+import es.headbe.texnes.Texnes
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags
 import net.minecraft.block.Block
@@ -18,6 +19,7 @@ object Blocks {
         .strength(5f, 6f)
         .sounds(BlockSoundGroup.AMETHYST_BLOCK)
     )
+    val gasLamp = GasLamp()
 
     val saltBlock = evaporiteBlock(0.5f)
     val natronBlock = evaporiteBlock(0.5f)
