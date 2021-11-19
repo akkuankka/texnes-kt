@@ -7,6 +7,8 @@ import net.minecraft.block.FallingBlock
 import net.minecraft.block.Material
 import net.minecraft.sound.BlockSoundGroup
 import es.headbe.texnes.util.*
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings
+import net.minecraft.item.BlockItem
 
 object Blocks {
     val bismuthBlock = Block(FabricBlockSettings
@@ -32,12 +34,20 @@ object Blocks {
         )
     }
 
+    private fun Block.asBlockItem(): BlockItem {
+        return BlockItem(
+            this,
+            FabricItemSettings().group(Texnes.ITEM_GROUP)
+        )
+    }
+
     fun registerAll() {
-        ident("bismuth_block").block(bismuthBlock)
-        ident("salt_block").block(saltBlock)
-        ident("natron_block").block(natronBlock)
-        ident("nitre_block").block(nitreBlock)
-        ident("gypsum_block").block(gypsumBlock)
-        ident("borax_block").block(boraxBlock)
+        ident("bismuth_block").block(bismuthBlock).item(bismuthBlock.asBlockItem())
+        ident("gas_lamp").block(gasLamp).item(gasLamp.asBlockItem())
+        ident("salt_block").block(saltBlock).item(saltBlock.asBlockItem())
+        ident("natron_block").block(natronBlock).item(natronBlock.asBlockItem())
+        ident("nitre_block").block(nitreBlock).item(nitreBlock.asBlockItem())
+        ident("gypsum_block").block(gypsumBlock).item(gypsumBlock.asBlockItem())
+        ident("borax_block").block(boraxBlock).item(boraxBlock.asBlockItem())
     }
 }
