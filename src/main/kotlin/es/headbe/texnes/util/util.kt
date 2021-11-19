@@ -7,6 +7,7 @@ import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.fluid.Fluid
 import net.minecraft.item.Item
 import net.minecraft.util.registry.Registry
+import net.minecraft.util.shape.VoxelShape
 
 
 // copied from https://github.com/GabrielOlvH/Industrial-Revolution
@@ -32,4 +33,11 @@ fun Identifier.item(item: Item): Identifier {
 fun Identifier.blockEntityType(entityType: BlockEntityType<*>): Identifier {
     Registry.register(Registry.BLOCK_ENTITY_TYPE, this, entityType)
     return this
+}
+
+fun blockBenchVoxels(x: Double, y:Double, z: Double, dx: Double, dy: Double, dz: Double): VoxelShape {
+    return Block.createCuboidShape(
+        x, y, z, x + dx, y + dy, z + dz
+    )
+
 }

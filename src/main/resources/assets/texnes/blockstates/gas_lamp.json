@@ -1,0 +1,6 @@
+{
+  "variants": {
+      "lamp_on=false": {"model":  "texnes:block/gas_lamp_unlit"},
+    "lamp_on=true": {"model":  "texnes:block/gas_lamp_lit"}
+  }
+}
