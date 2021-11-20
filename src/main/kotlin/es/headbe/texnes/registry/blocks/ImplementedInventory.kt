@@ -3,24 +3,26 @@ package es.headbe.texnes.registry.blocks
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.inventory.Inventories
 import net.minecraft.inventory.Inventory
+import net.minecraft.inventory.SidedInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.util.collection.DefaultedList
+import net.minecraft.util.math.Direction
 
 /**
  * A simple {@code Inventory} impl with default methods and an item getter
  */
 
-interface ImplementedInventory : Inventory {
+interface ImplementedInventory : SidedInventory {
     var items: DefaultedList<ItemStack>
 
     companion object {
-        fun of(items: DefaultedList<ItemStack>): ImplementedInventory?  {
+        fun of(items: DefaultedList<ItemStack>): ImplementedInventory  {
             return object : ImplementedInventory {
                 override var items = items
             }
         }
 
-        fun ofSize(size: Int): ImplementedInventory? =
+        fun ofSize(size: Int): ImplementedInventory =
             of(DefaultedList.ofSize(size, ItemStack.EMPTY))
 
     }
@@ -62,4 +64,7 @@ interface ImplementedInventory : Inventory {
     }
 
     override fun canPlayerUse(player: PlayerEntity): Boolean = true
+    override fun getAvailableSlots(var1: Direction): IntArray = IntArray(items.size) {it}
+    override fun canInsert(slot: Int, stack: ItemStack?, dir: Direction?):Boolean =  (dir ?: Direction.UP) != Direction.UP
+    override fun canExtract(slot: Int, stack: ItemStack?, dir: Direction?): Boolean = true
 }
