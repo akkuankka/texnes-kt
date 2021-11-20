@@ -10,6 +10,7 @@ import net.minecraft.sound.BlockSoundGroup
 import es.headbe.texnes.util.*
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.item.BlockItem
+import net.minecraft.util.registry.Registry
 
 object Blocks {
     val bismuthBlock = Block(FabricBlockSettings
@@ -26,6 +27,8 @@ object Blocks {
     val nitreBlock = evaporiteBlock(0.5f)
     val gypsumBlock = evaporiteBlock(1f)
     val boraxBlock = evaporiteBlock(1f)
+
+    val chemistsCabinet = ChemistsCabinet()
 
     private fun evaporiteBlock(hardness: Float): FallingBlock {
         return FallingBlock(FabricBlockSettings
@@ -51,5 +54,8 @@ object Blocks {
         ident("nitre_block").block(nitreBlock).item(nitreBlock.asBlockItem())
         ident("gypsum_block").block(gypsumBlock).item(gypsumBlock.asBlockItem())
         ident("borax_block").block(boraxBlock).item(boraxBlock.asBlockItem())
+        ident("chemists_cabinet").block(chemistsCabinet).item(chemistsCabinet.asBlockItem())
+        ChemistsCabinet.Entity.initType(Registry.BLOCK.get(ident("chemists_cabinet")))
+
     }
 }
