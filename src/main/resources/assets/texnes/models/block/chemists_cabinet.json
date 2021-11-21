@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "texnes:block/chemists_cabinet_side",
+    "front": "texnes:block/chemists_cabinet_front",
+    "side": "texnes:block/chemists_cabinet_side"
+  }
+}
