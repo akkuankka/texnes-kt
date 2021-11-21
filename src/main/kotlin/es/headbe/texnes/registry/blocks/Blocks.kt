@@ -55,7 +55,7 @@ object Blocks {
         ident("gypsum_block").block(gypsumBlock).item(gypsumBlock.asBlockItem())
         ident("borax_block").block(boraxBlock).item(boraxBlock.asBlockItem())
         ident("chemists_cabinet").block(chemistsCabinet).item(chemistsCabinet.asBlockItem())
-        ChemistsCabinet.Entity.initType(Registry.BLOCK.get(ident("chemists_cabinet")))
+        ChemistsCabinet.Entity.initType(chemistsCabinet)
 
     }
 }

@@ -1,22 +1,28 @@
 package es.headbe.texnes.registry.blocks
 
+import es.headbe.texnes.gui.ChemistsCabinetGui
 import es.headbe.texnes.util.ident
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
 import net.minecraft.block.*
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.block.entity.LootableContainerBlockEntity
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventories
-import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemPlacementContext
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
+import net.minecraft.screen.NamedScreenHandlerFactory
+import net.minecraft.screen.ScreenHandler
+import net.minecraft.screen.ScreenHandlerContext
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.state.StateManager
 import net.minecraft.state.property.Properties
+import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
-import net.minecraft.util.ItemScatterer
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
@@ -47,6 +53,18 @@ class ChemistsCabinet : HorizontalFacingBlock(
         return Entity(pos, state)
     }
 
+    override fun createScreenHandlerFactory(
+        state: BlockState?,
+        world: World?,
+        pos: BlockPos
+    ): NamedScreenHandlerFactory? {
+        when (val be = world?.getBlockEntity(pos)) {
+            null -> return null
+            is NamedScreenHandlerFactory -> return be
+            else -> return null
+        }
+    }
+
     override fun getRenderType(state: BlockState): BlockRenderType = BlockRenderType.MODEL
 
 /*
@@ -73,41 +91,50 @@ class ChemistsCabinet : HorizontalFacingBlock(
         hand: Hand,
         hit: BlockHitResult
     ): ActionResult {
-        if (world.isClient) return ActionResult.SUCCESS
-        val blockEntity = world.getBlockEntity(pos) as ImplementedInventory
-        if (!player.getStackInHand(hand).isEmpty) {
-            if (blockEntity.getStack(0).isEmpty) {
-                blockEntity.setStack(0, player.getStackInHand(hand))
-                player.getStackInHand(hand).count = 0
-            } else if (blockEntity.getStack(1).isEmpty) {
-                blockEntity.setStack(1, player.getStackInHand(hand).copy())
-                player.getStackInHand(hand).count = 0
-            } else {
-                println("the first slot holds " +
-                blockEntity.getStack(0) + " and the second slot holds " + blockEntity.getStack(0) + ".")
-            }
-        } else {
-           if (!blockEntity.getStack(1).isEmpty) {
-               player.inventory.offerOrDrop(blockEntity.getStack(1))
-               blockEntity.removeStack(1)
-           } else if (!blockEntity.getStack(0).isEmpty) {
-               player.inventory.offerOrDrop(blockEntity.getStack(0))
-               blockEntity.removeStack(0)
-           }
-        }
-
+        player.openHandledScreen(state.createScreenHandlerFactory(world, pos))
 
         return ActionResult.SUCCESS
     }
 
 
     class Entity(pos: BlockPos, state: BlockState) :
-        BlockEntity(type, pos, state),
+        LootableContainerBlockEntity(type, pos, state),
         ImplementedInventory
-
     {
-        override var items: DefaultedList<ItemStack> = DefaultedList.ofSize(2, ItemStack.EMPTY)
+        override var items: DefaultedList<ItemStack> = DefaultedList.ofSize(NUM_SLOTS, ItemStack.EMPTY)
 
+        override fun getContainerName(): Text = TranslatableText(cachedState.block.translationKey)
+        override fun clear() {
+            super<ImplementedInventory>.clear()
+        }
+
+        override fun isEmpty(): Boolean {
+            return super<ImplementedInventory>.isEmpty()
+        }
+
+        override fun getStack(slot: Int): ItemStack {
+            return super<ImplementedInventory>.getStack(slot)
+        }
+
+        override fun removeStack(slot: Int): ItemStack {
+            return super<ImplementedInventory>.removeStack(slot)
+        }
+
+        override fun removeStack(slot: Int, count: Int): ItemStack {
+            return super<ImplementedInventory>.removeStack(slot, count)
+        }
+
+        override fun setStack(slot: Int, stack: ItemStack) {
+            super<ImplementedInventory>.setStack(slot, stack)
+        }
+
+        override fun getInvStackList(): DefaultedList<ItemStack> = items
+        override fun setInvStackList(list: DefaultedList<ItemStack>?) {
+           list?.let {items = it}
+        }
+
+        override fun createScreenHandler(syncId: Int, inventory: PlayerInventory): ScreenHandler =
+            ChemistsCabinetGui(syncId, inventory, ScreenHandlerContext.create(world, pos))
 
         override fun writeNbt(nbt: NbtCompound): NbtCompound {
             Inventories.writeNbt(nbt, items)
@@ -130,6 +157,8 @@ class ChemistsCabinet : HorizontalFacingBlock(
 
         companion object {
             lateinit var type: BlockEntityType<Entity>
+
+            const val NUM_SLOTS: Int = 18
 
             fun initType(block: Block) {
                 type = Registry.register(

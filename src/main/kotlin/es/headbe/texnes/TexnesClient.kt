@@ -2,6 +2,7 @@ package es.headbe.texnes
 
 import es.headbe.texnes.gui.PressureGaugeGui
 import es.headbe.texnes.gui.PressureGaugeScreen
+import es.headbe.texnes.registry.MiscRegistry
 import es.headbe.texnes.util.networking.NetworkingConstants
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking
 
@@ -14,5 +15,7 @@ class TexnesClient {
                 client.setScreen(PressureGaugeScreen(PressureGaugeGui()))
             }
         }
+
+        MiscRegistry.registerClientScreens()
     }
 }
