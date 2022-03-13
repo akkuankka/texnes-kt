@@ -9,6 +9,7 @@ import net.minecraft.block.Material
 import net.minecraft.sound.BlockSoundGroup
 import es.headbe.texnes.util.*
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
+import net.minecraft.block.OreBlock
 import net.minecraft.item.BlockItem
 import net.minecraft.util.registry.Registry
 
@@ -20,6 +21,15 @@ object Blocks {
         .strength(5f, 6f)
         .sounds(BlockSoundGroup.AMETHYST_BLOCK)
     )
+
+    val bismuthOre = OreBlock(FabricBlockSettings
+        .of(Material.STONE)
+        .breakByTool(FabricToolTags.PICKAXES, 2)
+        .requiresTool()
+        .strength(5f, 6f)
+        .sounds(BlockSoundGroup.STONE)
+    )
+
     val gasLamp = GasLamp()
 
     val saltBlock = evaporiteBlock(0.5f)

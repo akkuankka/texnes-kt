@@ -41,3 +41,28 @@ fun blockBenchVoxels(x: Double, y:Double, z: Double, dx: Double, dy: Double, dz:
     )
 
 }
+
+fun<T, U> T?.map(f: (T) -> U): U? = if (this == null) {
+    null
+} else {
+    f(this)
+}
+
+fun<T, U> T?.and_then(f: (T) -> U?): U? = if (this == null) {
+    null
+} else { f(this) }
+
+/// Try all functions in a collection in order until one of them succeeds, and return that one's result.
+fun<T> Iterable<(T) -> T?>.join(): (T) -> T? = {
+    var result: T? = null
+    for (f in this) {
+        val stepres = f(it)
+        if (stepres == null) {
+            continue;
+        } else {
+            result = stepres
+            break
+        }
+    }
+    result
+}

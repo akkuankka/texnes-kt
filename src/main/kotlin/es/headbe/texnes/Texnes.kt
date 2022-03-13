@@ -1,8 +1,11 @@
 package es.headbe.texnes
 
+import es.headbe.texnes.datagen.DataGenManager
 import es.headbe.texnes.registry.MiscRegistry
 import es.headbe.texnes.registry.generation.Generation
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.util.Identifier
@@ -22,6 +25,11 @@ class Texnes {
         Generation.registerAll()
         MiscRegistry.registerMisc()
 
+        if (FabricLoader.getInstance().getLaunchArguments(true).contains("-dataGen")) {
+            ClientLifecycleEvents.CLIENT_STARTED.register(ClientLifecycleEvents.ClientStarted {
+                DataGenManager().generate()
+            })
+        }
 //        println("Hello Fabric world!")
     }
 
