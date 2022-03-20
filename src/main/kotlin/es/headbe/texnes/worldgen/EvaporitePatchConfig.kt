@@ -1,4 +1,4 @@
-package es.headbe.texnes.registry.generation
+package es.headbe.texnes.worldgen
 
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder

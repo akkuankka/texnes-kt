@@ -1,22 +1,18 @@
-package es.headbe.texnes.registry.generation
+package es.headbe.texnes.worldgen
 
 import com.google.common.collect.ImmutableList
 import com.mojang.serialization.Codec
-import com.mojang.serialization.codecs.RecordCodecBuilder
 import es.headbe.texnes.registry.blocks.Blocks
 import es.headbe.texnes.util.iteratorUtil.with
 import es.headbe.texnes.util.iteratorUtil.zipAll
 import net.minecraft.block.BlockState
 import net.minecraft.util.math.BlockPos
-import net.minecraft.util.math.intprovider.IntProvider
 import net.minecraft.util.math.intprovider.UniformIntProvider
-import net.minecraft.world.Heightmap
 import net.minecraft.world.gen.feature.ConfiguredFeature
 import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.feature.FeatureConfig
 import net.minecraft.world.gen.feature.util.FeatureContext
 import net.minecraft.world.gen.stateprovider.BlockStateProvider
-import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider
 
 class EvaporitePatch(configCodec: Codec<EvaporitePatchConfig>) : Feature<EvaporitePatchConfig>(configCodec) {
 
