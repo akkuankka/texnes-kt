@@ -53,6 +53,7 @@ object Blocks {
 
     fun registerAll() {
         ident("bismuth_block").block(bismuthBlock).item(bismuthBlock.asBlockItem())
+        ident("bismuth_ore").block(bismuthOre).item(bismuthOre.asBlockItem())
         ident("gas_lamp").block(gasLamp).item(gasLamp.asBlockItem())
         ident("salt_block").block(saltBlock).item(saltBlock.asBlockItem())
         ident("natron_block").block(natronBlock).item(natronBlock.asBlockItem())

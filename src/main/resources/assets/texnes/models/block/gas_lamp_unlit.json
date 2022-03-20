@@ -1,6 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"parent": "texnes:block/gas_lamp_unlit",
+	"parent": "",
 	"textures": {
 		"0": "minecraft:block/cauldron_inner",
 		"1": "texnes:block/mantle_unlit",

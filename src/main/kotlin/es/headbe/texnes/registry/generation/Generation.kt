@@ -135,10 +135,10 @@ object Generation {
             .setConfiguredFeaturePlacement(gypsumPatchKey.value, evaporitePlacementMods(4))
         val natronPatchKey = configuredFeatureKey("natron_patch")
         val natronPatch = registerConfiguredFeature(natronPatchKey, EvaporitePatch.configureWith(Blocks.natronBlock.defaultState))
-            .setConfiguredFeaturePlacement(gypsumPatchKey.value, evaporitePlacementMods(2))
+            .setConfiguredFeaturePlacement(natronPatchKey.value, evaporitePlacementMods(2))
         val nitrePatchKey = configuredFeatureKey("nitre_patch")
         val nitrePatch = registerConfiguredFeature(nitrePatchKey, EvaporitePatch.configureWith(Blocks.nitreBlock.defaultState))
-            .setConfiguredFeaturePlacement(gypsumPatchKey.value, evaporitePlacementMods(1))
+            .setConfiguredFeaturePlacement(nitrePatchKey.value, evaporitePlacementMods(1))
 
         // surface builders
 
