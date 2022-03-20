@@ -28,6 +28,7 @@ abstract class DataGenerator<T, P>(val dir: File, val namespace: String, val fal
         val output = factory.generate()
         val result = output.map { outp ->
             file.createNewFile()
+//            println("DATAGEN: Writing file $file")
             factory.write(file, outp)
             true
         }

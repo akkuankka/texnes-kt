@@ -30,15 +30,17 @@ class DataGenManager {
     val metalSpriteGen = MetalSpriteGenerator(root, Texnes.MOD_ID) { ImageGen.nullFactory() }
 
     init {
-        LumpOres.lumpOresRegistry.forEach { (id, block) ->  lootTableGenerator.register(block, LootTableGenerator.oreLumpDrop(block))}
+//        println("dataGenManager initialising")
+        LumpOres.lumpOresRegistry.forEach { (_, block) ->  lootTableGenerator.register(block, LootTableGenerator.oreLumpDrop(block))}
 
-        MetalSpritesRegistry.metalSprites.forEach { (id, _model) ->
+        MetalSpritesRegistry.metalSprites.forEach { (id, _) ->
             val realId = Identifier(id.namespace, id.path)
             val item = Registry.ITEM.get(realId)
             if (item != Items.AIR) {
                 if (item is BlockItem) {
                      blockModelGen.register(item.block, BlockModelGen.cubeAll(item.block))
                 }
+//                println("DATAGEN: Generating item $item")
                 metalSpriteGen.register(id, ImageGen.simpleFactory<Identifier>()(id))
                 itemModelGen.register(item, ItemModelGen.default(item))
 
@@ -49,6 +51,7 @@ class DataGenManager {
     }
 
     fun generate() {
+        println("generating items and stuff")
         val itemModelsGenerated = itemModelGen.generate()
         val blockModelsGenerated = blockModelGen.generate()
         val spritesGenerated = metalSpriteGen.generate()

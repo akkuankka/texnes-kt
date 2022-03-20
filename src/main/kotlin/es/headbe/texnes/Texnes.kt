@@ -29,6 +29,7 @@ class Texnes {
             ClientLifecycleEvents.CLIENT_STARTED.register(ClientLifecycleEvents.ClientStarted {
                 DataGenManager().generate()
             })
+            println("registered for datagen time")
         }
 //        println("Hello Fabric world!")
     }

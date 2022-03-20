@@ -6,10 +6,10 @@ import net.minecraft.block.Block
 import net.minecraft.util.Identifier
 
 object LumpOres {
+    val lumpOresRegistry: HashMap<Identifier, Block> = hashMapOf()
     init {
         put(ident("bismuth_ore"), Blocks.bismuthOre)
     }
-    var lumpOresRegistry: HashMap<Identifier, Block> = hashMapOf()
 
-    fun put(ident: Identifier, block: Block) = lumpOresRegistry.put(ident, block)
+    fun put(ident: Identifier, block: Block) = lumpOresRegistry?.put(ident, block)
 }

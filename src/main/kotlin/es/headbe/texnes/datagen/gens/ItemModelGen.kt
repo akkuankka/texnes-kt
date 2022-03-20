@@ -32,7 +32,7 @@ class ItemModelGen(val root: File, namespace: String, fallback: (Item) -> JsonFa
                     else {
                         obj.addProperty("parent", "item/generated")
                         val texturesObj = JsonObject()
-                        texturesObj.addProperty("layer0", "${"id.namespace"}:item/${id.path}")
+                        texturesObj.addProperty("layer0", "${id.namespace}:item/${id.path}")
                         obj.add("textures", texturesObj)
                     }
                     return obj

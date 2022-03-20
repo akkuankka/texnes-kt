@@ -67,6 +67,20 @@ tasks.withType(JavaCompile) {
     it.options.release = 17
 }
 
+loom {
+    runs {
+        datagen2 {
+            programArg "-dataGen"
+            environment = "client"
+            configName = "DataGeneration"
+            runDir = "datagen_run"
+            source = sourceSets.main
+            defaultMainClass = "es.headbe.texnes.Texnes"
+        }
+    }
+
+}
+
 java {
     // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
     // if it is present.

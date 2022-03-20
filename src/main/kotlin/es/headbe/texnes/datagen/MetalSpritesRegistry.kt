@@ -6,12 +6,12 @@ import net.minecraft.client.util.ModelIdentifier
 import es.headbe.texnes.datagen.ResourceGenDescriptor.ResourceModel
 
 object MetalSpritesRegistry {
+    val metalSprites: HashMap<ModelIdentifier, ResourceModel> = hashMapOf()
     init {
         put("lead_plate", leadSettings.plate())
         putOreAndIngot("lead", leadSettings)
         putBlock("lead_block", leadSettings.block())
     }
-    var metalSprites: HashMap<ModelIdentifier, ResourceModel> = hashMapOf()
 
     fun put(id: String, descriptor: ResourceModel) {
         metalSprites[ModelIdentifier(ident(id), "inventory")] = descriptor
