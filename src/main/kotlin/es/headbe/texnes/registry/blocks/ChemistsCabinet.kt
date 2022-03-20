@@ -136,7 +136,7 @@ class ChemistsCabinet : HorizontalFacingBlock(
         override fun createScreenHandler(syncId: Int, inventory: PlayerInventory): ScreenHandler =
             ChemistsCabinetGui(syncId, inventory, ScreenHandlerContext.create(world, pos))
 
-        override fun writeNbt(nbt: NbtCompound): NbtCompound {
+        override fun writeNbt(nbt: NbtCompound) {
             Inventories.writeNbt(nbt, items)
             return super.writeNbt(nbt)
         }

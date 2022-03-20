@@ -23,6 +23,9 @@
     ],
     "client": [
       "es.headbe.texnes.TexnesClient::init"
+    ],
+    "terrablender": [
+      "es.headbe.texnes.TerraBlender"
     ]
   },
   "mixins": [

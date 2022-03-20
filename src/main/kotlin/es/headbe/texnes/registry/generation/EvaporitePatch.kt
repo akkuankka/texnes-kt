@@ -11,8 +11,6 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.intprovider.IntProvider
 import net.minecraft.util.math.intprovider.UniformIntProvider
 import net.minecraft.world.Heightmap
-import net.minecraft.world.gen.decorator.Decorator
-import net.minecraft.world.gen.decorator.HeightmapDecoratorConfig
 import net.minecraft.world.gen.feature.ConfiguredFeature
 import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.feature.FeatureConfig
@@ -60,17 +58,18 @@ class EvaporitePatch(configCodec: Codec<EvaporitePatchConfig>) : Feature<Evapori
     }
     companion object {
         val evaporitePatch = EvaporitePatch(EvaporitePatchConfig.codec)
+        fun <FC : FeatureConfig> Feature<FC>.configure(config: FC): ConfiguredFeature<FC, Feature<FC>> = ConfiguredFeature(this, config)
 
-        fun configureWith(block: BlockState, chance: Int = 5): ConfiguredFeature<*, *> {
-            return evaporitePatch.configure(
+        fun configureWith(block: BlockState): ConfiguredFeature<*, *>
+            = evaporitePatch.configure(
                 EvaporitePatchConfig(
                     UniformIntProvider.create(2, 12),
-                    SimpleBlockStateProvider(block),
+                    BlockStateProvider.of(block),
                     ImmutableList.of(Blocks.saltBlock.defaultState, Blocks.gypsumBlock.defaultState)
                 )
-            ).decorate(Decorator.HEIGHTMAP.configure(HeightmapDecoratorConfig(Heightmap.Type.OCEAN_FLOOR_WG)))
+            )/*.decorate(Decorator.HEIGHTMAP.configure(HeightmapDecoratorConfig(Heightmap.Type.OCEAN_FLOOR_WG)))
                 .spreadHorizontally()
-                .applyChance(chance)
-        }
+                .applyChance(chance)*/
     }
+
 }

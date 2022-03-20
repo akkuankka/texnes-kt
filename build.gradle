@@ -21,6 +21,12 @@ repositories {
         name = "CottonMC"
         url = "https://server.bbkr.space/artifactory/libs-release"
     }
+    maven {
+        url = "https://maven.minecraftforge.net/"
+    }
+    maven {
+        url 'https://cursemaven.com'
+    }
 }
 
 dependencies {
@@ -29,11 +35,14 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
+
+
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
 
+    modImplementation "com.github.glitchfiend:TerraBlender-fabric:${project.terrablender_version}"
     modImplementation include("io.github.cottonmc:LibGui:4.2.2+1.17.1")
     // PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
     // You may need to force-disable transitiveness on them.

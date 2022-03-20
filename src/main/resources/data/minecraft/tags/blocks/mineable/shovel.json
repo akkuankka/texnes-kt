@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "texnes:salt_block",
+    "texnes:gypsum_block",
+    "texnes:nitre_block",
+    "texnes:natron_block",
+    "texnes:borax_block"
+  ]
+}
