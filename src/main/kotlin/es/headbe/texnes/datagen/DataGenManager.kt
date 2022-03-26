@@ -55,5 +55,6 @@ class DataGenManager {
         val itemModelsGenerated = itemModelGen.generate()
         val blockModelsGenerated = blockModelGen.generate()
         val spritesGenerated = metalSpriteGen.generate()
+        val lootTablesGenerated = lootTableGenerator.generate()
     }
 }

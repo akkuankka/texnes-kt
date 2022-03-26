@@ -34,6 +34,7 @@ object Generation {
             listOf(PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP, SquarePlacementModifier.of(), RarityFilterPlacementModifier.of(chance), BiomePlacementModifier.of())
         }
 
+
         // feature placement
         val boraxPatchKey = configuredFeatureKey("borax_patch")
         val boraxPatch = registerConfiguredFeature(boraxPatchKey, EvaporitePatch.configureWith(Blocks.boraxBlock.defaultState))

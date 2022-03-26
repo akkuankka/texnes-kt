@@ -10,6 +10,7 @@ import es.headbe.texnes.util.*
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.block.OreBlock
 import net.minecraft.item.BlockItem
+import net.minecraft.util.Identifier
 
 object Blocks {
     val bismuthBlock = Block(FabricBlockSettings
@@ -19,12 +20,15 @@ object Blocks {
         .sounds(BlockSoundGroup.AMETHYST_BLOCK)
     )
 
-    val bismuthOre = OreBlock(FabricBlockSettings
+    private fun metalOre(strength: f32 = 5f, resistance: f32 = 6f) = OreBlock(FabricBlockSettings
         .of(Material.STONE)
         .requiresTool()
-        .strength(5f, 6f)
+        .strength(strength, resistance)
         .sounds(BlockSoundGroup.STONE)
     )
+
+    val bismuthOre = metalOre()
+
 
     val gasLamp = GasLamp()
 
@@ -51,9 +55,30 @@ object Blocks {
         )
     }
 
-    fun registerAll() {
-        ident("bismuth_block").block(bismuthBlock).item(bismuthBlock.asBlockItem())
+    private fun OreBlock.registerOre(name: String): String {
+        ident("${name}_ore").block(this).item(this.asBlockItem())
+        return name
+    }
+
+
+    val leadOre = metalOre()
+    val tinOre = metalOre()
+    val zincOre = metalOre()
+    val arsenicOre = metalOre()
+    val silverOre = metalOre()
+
+    private fun registerOres() {
         ident("bismuth_ore").block(bismuthOre).item(bismuthOre.asBlockItem())
+        leadOre.registerOre("lead")
+        tinOre.registerOre("tin")
+        zincOre.registerOre("zinc")
+        arsenicOre.registerOre("arsenic")
+        silverOre.registerOre("silver")
+    }
+
+    fun registerAll() {
+        registerOres()
+        ident("bismuth_block").block(bismuthBlock).item(bismuthBlock.asBlockItem())
         ident("gas_lamp").block(gasLamp).item(gasLamp.asBlockItem())
         ident("salt_block").block(saltBlock).item(saltBlock.asBlockItem())
         ident("natron_block").block(natronBlock).item(natronBlock.asBlockItem())

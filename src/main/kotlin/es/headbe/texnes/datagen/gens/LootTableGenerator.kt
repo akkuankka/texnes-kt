@@ -18,7 +18,9 @@ import net.minecraft.loot.entry.AlternativeEntry
 import net.minecraft.loot.entry.ItemEntry
 import net.minecraft.loot.function.ApplyBonusLootFunction
 import net.minecraft.loot.function.ExplosionDecayLootFunction
+import net.minecraft.loot.function.SetCountLootFunction
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider
+import net.minecraft.loot.provider.number.UniformLootNumberProvider
 import net.minecraft.predicate.NumberRange
 import net.minecraft.predicate.item.EnchantmentPredicate
 import net.minecraft.predicate.item.ItemPredicate
@@ -78,6 +80,7 @@ class LootTableGenerator(val root: File, namespace: String, fallback: (Block) ->
                                                 )
                                             ),
                                         ItemEntry.builder(rawOre)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 2.0f), false))
                                             .apply(ApplyBonusLootFunction.oreDrops(Enchantments.FORTUNE))
                                             .apply(ExplosionDecayLootFunction.builder())
                                     )

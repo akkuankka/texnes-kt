@@ -6,13 +6,14 @@ import es.headbe.texnes.util.ident
 import net.minecraft.util.Identifier
 import java.lang.IllegalArgumentException
 
-class ResourceGenDescriptor private constructor(val base: ColourPalette, val gens: HashMap<TransformType, ColourPalette>) {
+class ResourceGenDescriptor private constructor(private val base: ColourPalette, private val gens: HashMap<TransformType, ColourPalette>) {
 
 
 
     fun block() = ResourceModel(TransformType.Block, gens[TransformType.Block] ?: base)
     fun ore() = ResourceModel(TransformType.Ore, gens[TransformType.Ore] ?: base)
     fun ingot() = ResourceModel(TransformType.Ingot, gens[TransformType.Ingot] ?: base)
+    fun lump() = ResourceModel(TransformType.Lump, gens[TransformType.Lump] ?: base)
     fun bucket() = ResourceModel(TransformType.Bucket, gens[TransformType.Ingot] ?: base)
     fun plate() = ResourceModel(TransformType.Plate, gens[TransformType.Block] ?: base)
 
@@ -38,7 +39,7 @@ class ResourceGenDescriptor private constructor(val base: ColourPalette, val gen
         fun asWorker(): (Colour) -> Colour? = makeWorker(colours)
     }
 
-    class Builder(val basePalette: ColourPalette) {
+    class Builder(private val basePalette: ColourPalette) {
         private var gens: HashMap<TransformType, ColourPalette> = hashMapOf()
 
         fun with(type: TransformType, colours: ColourPalette): Builder {
@@ -73,6 +74,10 @@ class ResourceGenDescriptor private constructor(val base: ColourPalette, val gen
         Ore {
             override fun sort() = "block"
             override fun baseTexture() = "ore_base"
+        },
+        Lump {
+            override fun sort() = "item"
+            override fun baseTexture() = "lump_base"
         },
         Ingot {
             override fun sort() = "item"
