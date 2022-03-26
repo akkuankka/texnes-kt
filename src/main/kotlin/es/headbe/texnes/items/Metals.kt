@@ -37,7 +37,7 @@ object Metals {
         .build()
 
     val arsenicSettings = ResourceGenDescriptor.Builder(ColourPalette(
-        Colour.fromRGB(0xdef8bfu),
+        Colour.fromRGB(0xeb2f0cu),
         Colour.fromRGB(0xd13d2fu),
         Colour.fromRGB(0xd15633u)
     )).build()

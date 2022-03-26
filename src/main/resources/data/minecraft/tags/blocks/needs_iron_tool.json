@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "texnes:zinc_ore",
+    "texnes:lead_ore",
+    "texnes:silver_ore",
+    "texnes:tin_ore"
+  ]
+}

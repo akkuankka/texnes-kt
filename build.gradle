@@ -68,16 +68,16 @@ tasks.withType(JavaCompile) {
 }
 
 loom {
-    runs {
-        datagen2 {
-            programArg "-dataGen"
-            environment = "client"
-            configName = "DataGeneration"
-            runDir = "datagen_run"
-            source = sourceSets.main
-            defaultMainClass = "es.headbe.texnes.Texnes"
-        }
-    }
+//    runs {
+//        datagen2 {
+//            programArg "-dataGen"
+//            environment = "client"
+//            configName = "DataGeneration"
+//            runDir = "datagen_run"
+//            source = sourceSets.main
+//            defaultMainClass = "es.headbe.texnes.Texnes"
+//        }
+//    }
 
 }
 

@@ -2,8 +2,12 @@
   "replace": false,
   "values": [
     "texnes:bismuth_block",
-    "texnes:bismuth_ore"
-
+    "texnes:bismuth_ore",
+    "texnes:lead_ore",
+    "texnes:arsenic_ore",
+    "texnes:silver_ore",
+    "texnes:tin_ore",
+    "texnes:zinc_ore"
   ]
 }
 
